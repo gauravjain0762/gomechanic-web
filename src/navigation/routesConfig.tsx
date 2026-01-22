@@ -1,7 +1,7 @@
 import { lazy, type ReactNode } from "react";
-import MainLayout from "../layouts/MainLayout";
+import App from "../App.jsx";
 import AuthLayout from "../layouts/AuthLayout";
-import App from "../App.tsx";
+import MainLayout from "../layouts/MainLayout";
 
 const Login = lazy(() => import("../pages/Login"));
 const Dashboard = lazy(() => import("../pages/Dashboard"));
