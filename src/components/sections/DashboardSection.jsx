@@ -1,6 +1,14 @@
+import { useNavigate } from "react-router";
 import { LOGO_URL } from "../../utils/constants";
 
 const DashboardSection = () => {
+  const navigate = useNavigate();
+
+const handleViewServices = () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  navigate('/services');
+};
+
   return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-16">
@@ -76,9 +84,13 @@ const DashboardSection = () => {
                 Get Started
               </button>
 
-              <button className="bg-black text-white px-6 py-3 font-semibold text-sm hover:bg-gray-800 transition-all transform hover:scale-105 rounded-r-[20px] shadow-lg">
-                View Services
-              </button>
+           <button 
+  onClick={handleViewServices}
+  className="bg-black text-white px-6 py-3 font-semibold text-sm hover:bg-gray-800 transition-all transform hover:scale-105 rounded-r-[20px] shadow-lg"
+>
+  View Services
+</button>
+
             </div>
           </div>
         </div>
