@@ -1,12 +1,12 @@
 export const MENU_ITEMS = [
-  "Home",
-  "Car Services",
-  "Clutch",
-  "AC",
-  "SPA",
-  "Mechanical Services",
-  "More",
-  "Blog",
+  { label: "Home", path: "/" },
+  { label: "Car Services", path: "/services" },
+  { label: "Clutch", path: "/clutch" },
+  { label: "AC", path: "/ac" },
+  { label: "SPA", path: "/spa" },
+  { label: "Mechanical Services", path: "/mechanical" },
+  { label: "More", path: "/more" },
+  { label: "Blog", path: "/blog" },
 ];
 
 export const LOCATIONS = [
