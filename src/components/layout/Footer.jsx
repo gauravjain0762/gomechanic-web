@@ -1,7 +1,35 @@
-import { Mail, MapPin, Phone } from "lucide-react";
-import { CONTACT_INFO, LOGO_URL, QUICK_LINKS } from "../../utils/constants";
+import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Twitter, Youtube } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { CONTACT_INFO, LOGO_URL } from "../../utils/constants";
 
 const Footer = () => {
+  const navigate = useNavigate();
+
+  const menuItems = [
+    { label: "Home", path: "/" },
+    { label: "Car Services", path: "/services", category: "Services" },
+    { label: "Clutch", path: "/services", category: "Clutch" },
+    { label: "AC", path: "/services", category: "AC" },
+    { label: "SPA", path: "/services", category: "SPA" },
+    { label: "Mechanical Services", path: "/services", category: "Mechanical Service" },
+  ];
+
+  const companyLinks = [
+    { label: "About Us", path: "/about" },
+    { label: "Contact", path: "/contact" },
+    { label: "FAQ", path: "/faq" },
+    { label: "Gallery", path: "/gallery" },
+  ];
+
+  const handleNavigation = (item) => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (item.category) {
+      navigate(item.path, { state: { category: item.category } });
+    } else {
+      navigate(item.path);
+    }
+  };
+
   return (
     <footer
       className="relative bg-cover bg-center"
@@ -13,11 +41,12 @@ const Footer = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-black/90 to-black/95" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-16 py-16">
-        <div className="grid md:grid-cols-3 gap-12 items-start">
+        <div className="grid md:grid-cols-4 gap-12 items-start">
+          {/* Column 1: Logo & Description */}
           <div className="flex flex-col">
             <img
               src={LOGO_URL}
-              alt="Aston Martin Logo"
+              alt="Logo"
               className="h-80 w-auto mb-6"
               style={{ marginTop: -120 }}
             />
@@ -31,25 +60,63 @@ const Footer = () => {
               satisfaction.
             </p>
 
+            {/* Social Media Icons */}
+            <div className="flex gap-3 mb-6">
+              <a href="#" className="w-9 h-9 bg-gray-800 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors">
+                <Facebook size={18} className="text-white" />
+              </a>
+              <a href="#" className="w-9 h-9 bg-gray-800 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors">
+                <Twitter size={18} className="text-white" />
+              </a>
+              <a href="#" className="w-9 h-9 bg-gray-800 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors">
+                <Instagram size={18} className="text-white" />
+              </a>
+              <a href="#" className="w-9 h-9 bg-gray-800 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors">
+                <Youtube size={18} className="text-white" />
+              </a>
+              <a href="#" className="w-9 h-9 bg-gray-800 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors">
+                <Linkedin size={18} className="text-white" />
+              </a>
+            </div>
+
             <p className="text-gray-400 text-xs mt-auto">
               © 2026 Company Name. All rights reserved.
             </p>
           </div>
 
+          {/* Column 2: Our Services */}
           <div>
-            <h3 className="text-white font-bold mb-6 text-lg">Quick Links</h3>
+            <h3 className="text-white font-bold mb-6 text-lg">Our Services</h3>
             <ul className="space-y-3 text-gray-300 text-sm">
-              {QUICK_LINKS.map((item, i) => (
+              {menuItems.map((item, i) => (
                 <li
                   key={i}
+                  onClick={() => handleNavigation(item)}
                   className="hover:text-white hover:translate-x-2 transition-all cursor-pointer duration-300"
                 >
-                  • {item}
+                  • {item.label}
                 </li>
               ))}
             </ul>
           </div>
 
+          {/* Column 3: Company Links */}
+          <div>
+            <h3 className="text-white font-bold mb-6 text-lg">Company</h3>
+            <ul className="space-y-3 text-gray-300 text-sm">
+              {companyLinks.map((item, i) => (
+                <li
+                  key={i}
+                  onClick={() => handleNavigation(item)}
+                  className="hover:text-white hover:translate-x-2 transition-all cursor-pointer duration-300"
+                >
+                  • {item.label}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 4: Contact Info */}
           <div>
             <h3 className="text-white font-bold mb-6 text-lg">Contact Info</h3>
 
@@ -58,9 +125,9 @@ const Footer = () => {
                 <div key={i} className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center shrink-0">
                     {item.label === "Email" ? (
-                      <Mail size={18} />
+                      <Mail size={18} className="text-white" />
                     ) : (
-                      <Phone size={18} />
+                      <Phone size={18} className="text-white" />
                     )}
                   </div>
                   <div>
@@ -86,6 +153,8 @@ const Footer = () => {
             </div>
           </div>
         </div>
+
+       
       </div>
     </footer>
   );
