@@ -1,12 +1,26 @@
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const HeroSection = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     owner: "Owner",
     car: "Maruti Swift",
     mobile: "",
   });
+
+  const handleCheckPrices = () => {
+    // Validate mobile number (optional)
+    if (formData.mobile.length < 10) {
+      alert("Please enter a valid mobile number");
+      return;
+    }
+
+    // Navigate to services page
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    navigate("/services");
+  };
 
   return (
     <section className="relative h-screen flex items-center overflow-hidden">
@@ -89,10 +103,14 @@ const HeroSection = () => {
                   setFormData({ ...formData, mobile: e.target.value })
                 }
                 placeholder="Enter Mobile Number"
+                maxLength="10"
                 className="w-full bg-white px-4 py-3 text-sm text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-500 rounded"
               />
 
-              <button className="w-full bg-red-600 text-white font-bold text-sm py-3 hover:bg-red-700 transition-all transform hover:scale-105 shadow-lg">
+              <button 
+                onClick={handleCheckPrices}
+                className="w-full bg-red-600 text-white font-bold text-sm py-3 hover:bg-red-700 transition-all transform hover:scale-105 shadow-lg rounded"
+              >
                 CHECK PRICES FOR FREE
               </button>
             </div>
